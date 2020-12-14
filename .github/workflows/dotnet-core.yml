@@ -16,9 +16,21 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 2.2.102
     - name: Install dependencies
-      run: dotnet restore
+      run: |
+        dotnet restore ./src/VAP/AML.tfserving/
+        dotnet restore ./src/VAP/AML.Client/
+        dotnet restore ./src/VAP/BGSObjectDetector/
+        dotnet restore ./src/VAP/Decoder/
+        dotnet restore ./src/VAP/DNNDetector/
+        dotnet restore ./src/VAP/FramePreProcessor/
+        dotnet restore ./src/VAP/PostProcessor/
+        dotnet restore ./src/VAP/LineDetector/
+        dotnet restore ./src/VAP/TFDetector/
+        dotnet restore ./src/VAP/TFWrapper/
+        dotnet restore ./src/VAP/Utils/
+        dotnet restore ./src/VAP/VideoPipelineCore/
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
